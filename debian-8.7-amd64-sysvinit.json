@@ -5,9 +5,9 @@
         "<esc><wait>",
         "install <wait>",
         " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `preseed_path`}} <wait>",
-        "debian-installer=en_US <wait>",
+        "debian-installer=en_US.UTF-8 <wait>",
         "auto <wait>",
-        "locale=en_US <wait>",
+        "locale=en_US.UTF-8 <wait>",
         "kbd-chooser/method=us <wait>",
         "keyboard-configuration/xkb-keymap=us <wait>",
         "netcfg/get_hostname={{ .Name }} <wait>",
@@ -20,7 +20,7 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 40960,
+      "disk_size": "{{user `disk_size`}}",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "Debian_64",
       "hard_drive_interface": "sata",
@@ -41,13 +41,13 @@
           "modifyvm",
           "{{.Name}}",
           "--memory",
-          "384"
+          "{{ user `memory` }}"
         ],
         [
           "modifyvm",
           "{{.Name}}",
           "--cpus",
-          "1"
+          "{{ user `cpus` }}"
         ]
       ],
       "virtualbox_version_file": ".vbox_version",
@@ -58,9 +58,9 @@
         "<esc><wait>",
         "install <wait>",
         " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `preseed_path`}} <wait>",
-        "debian-installer=en_US <wait>",
+        "debian-installer=en_US.UTF-8 <wait>",
         "auto <wait>",
-        "locale=en_US <wait>",
+        "locale=en_US.UTF-8 <wait>",
         "kbd-chooser/method=us <wait>",
         "keyboard-configuration/xkb-keymap=us <wait>",
         "netcfg/get_hostname={{ .Name }} <wait>",
@@ -73,7 +73,7 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 40960,
+      "disk_size": "{{user `disk_size`}}",
       "guest_os_type": "debian8-64",
       "headless": "{{ user `headless` }}",
       "http_directory": "http",
@@ -91,8 +91,9 @@
       "vm_name": "{{ user `template` }}",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
-        "memsize": "384",
-        "numvcpus": "1"
+        "ethernet0.pciSlotNumber": "32",
+        "memsize": "{{ user `memory` }}",
+        "numvcpus": "{{ user `cpus` }}"
       }
     },
     {
@@ -100,9 +101,9 @@
         "<esc><wait>",
         "install <wait>",
         " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `preseed_path`}} <wait>",
-        "debian-installer=en_US <wait>",
+        "debian-installer=en_US.UTF-8 <wait>",
         "auto <wait>",
-        "locale=en_US <wait>",
+        "locale=en_US.UTF-8 <wait>",
         "kbd-chooser/method=us <wait>",
         "keyboard-configuration/xkb-keymap=us <wait>",
         "netcfg/get_hostname={{ .Name }} <wait>",
@@ -115,7 +116,7 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 40960,
+      "disk_size": "{{user `disk_size`}}",
       "guest_os_type": "debian",
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
@@ -128,13 +129,13 @@
           "set",
           "{{.Name}}",
           "--memsize",
-          "384"
+          "{{ user `memory` }}"
         ],
         [
           "set",
           "{{.Name}}",
           "--cpus",
-          "1"
+          "{{ user `cpus` }}"
         ]
       ],
       "prlctl_version_file": ".prlctl_version",
@@ -151,9 +152,9 @@
         "<esc><wait>",
         "install <wait>",
         " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `preseed_path`}} <wait>",
-        "debian-installer=en_US <wait>",
+        "debian-installer=en_US.UTF-8 <wait>",
         "auto <wait>",
-        "locale=en_US <wait>",
+        "locale=en_US.UTF-8 <wait>",
         "kbd-chooser/method=us <wait>",
         "keyboard-configuration/xkb-keymap=us <wait>",
         "netcfg/get_hostname={{ .Name }} <wait>",
@@ -166,7 +167,8 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 40960,
+      "disk_size": "{{user `disk_size`}}",
+      "headless": "{{ user `headless` }}",
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
@@ -208,7 +210,9 @@
         "scripts/debian/networking.sh",
         "scripts/debian/sudoers.sh",
         "scripts/common/vagrant.sh",
-        "scripts/common/vmtools.sh",
+        "scripts/common/virtualbox.sh",
+        "scripts/common/vmware.sh",
+        "scripts/common/parallels.sh",
         "scripts/debian/cleanup.sh",
         "scripts/common/minimize.sh"
       ],
@@ -216,22 +220,25 @@
     }
   ],
   "variables": {
-    "box_basename": "debian-8.3",
+    "box_basename": "debian-8.7",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
+    "cpus": "1",
+    "disk_size": "40960",
     "git_revision": "__unknown_git_revision__",
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
-    "iso_checksum": "1dae8556e57bb04bf380b2dbf64f3e6c61f9c28cbb6518aabae95a003c89739a",
+    "iso_checksum": "065c90fa72ed51b7ce06ecfdc660b083e7b0c40bbf63fd58559c8bf7df7752da",
     "iso_checksum_type": "sha256",
-    "iso_name": "debian-8.3.0-amd64-CD-1.iso",
+    "iso_name": "debian-8.7.1-amd64-CD-1.iso",
+    "memory": "512",
     "metadata": "floppy/dummy_metadata.json",
-    "mirror": "http://ftp.uni-stuttgart.de/debian-cd",
-    "mirror_directory": "8.3.0/amd64/iso-cd",
-    "name": "debian-8.3",
+    "mirror": "http://cdimage.debian.org/cdimage/release",
+    "mirror_directory": "8.7.1/amd64/iso-cd",
+    "name": "debian-8.7",
     "no_proxy": "{{env `no_proxy`}}",
     "preseed_path": "debian-8/preseed-sysvinit.cfg",
-    "template": "debian-8.3-amd64",
+    "template": "debian-8.7-amd64",
     "version": "2.1.TIMESTAMP"
   }
 }
