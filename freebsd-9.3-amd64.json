@@ -17,7 +17,7 @@
         "fetch -o /tmp/install.sh http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `install_path`}} && chmod +x /tmp/install.sh && /tmp/install.sh {{ .Name }}<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 10140,
+      "disk_size": "{{user `disk_size`}}",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "FreeBSD_64",
       "headless": "{{ user `headless` }}",
@@ -26,7 +26,7 @@
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_url": "{{user `mirror`}}/{{user `mirror_directory`}}/{{user `iso_name`}}",
       "output_directory": "packer-{{user `template`}}-virtualbox",
-      "shutdown_command": "su -m root -c 'shutdown -p now'",
+      "shutdown_command": "echo 'vagrant' | su -m root -c 'shutdown -p now'",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_username": "vagrant",
@@ -37,13 +37,13 @@
           "modifyvm",
           "{{.Name}}",
           "--memory",
-          "512"
+          "{{ user `memory` }}"
         ],
         [
           "modifyvm",
           "{{.Name}}",
           "--cpus",
-          "1"
+          "{{ user `cpus` }}"
         ]
       ],
       "virtualbox_version_file": ".vbox_version",
@@ -67,7 +67,7 @@
         "fetch -o /tmp/install.sh http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `install_path`}} && chmod +x /tmp/install.sh && /tmp/install.sh {{ .Name }}<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 10140,
+      "disk_size": "{{user `disk_size`}}",
       "guest_os_type": "freebsd-64",
       "headless": "{{ user `headless` }}",
       "http_directory": "http",
@@ -75,7 +75,7 @@
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_url": "{{user `mirror`}}/{{user `mirror_directory`}}/{{user `iso_name`}}",
       "output_directory": "packer-{{user `template`}}-vmare",
-      "shutdown_command": "su -m root -c 'shutdown -p now'",
+      "shutdown_command": "echo 'vagrant' | su -m root -c 'shutdown -p now'",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_username": "vagrant",
@@ -85,8 +85,8 @@
       "vm_name": "{{ user `template` }}",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
-        "memsize": "512",
-        "numvcpus": "1"
+        "memsize": "{{ user `memory` }}",
+        "numvcpus": "{{ user `cpus` }}"
       }
     },
     {
@@ -106,7 +106,7 @@
         "fetch -o /tmp/install.sh http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `install_path`}} && chmod +x /tmp/install.sh && /tmp/install.sh {{ .Name }}<enter><wait>"
       ],
       "boot_wait": "8s",
-      "disk_size": 10140,
+      "disk_size": "{{user `disk_size`}}",
       "guest_os_type": "freebsd",
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
@@ -119,13 +119,13 @@
           "set",
           "{{.Name}}",
           "--memsize",
-          "512"
+          "{{ user `memory` }}"
         ],
         [
           "set",
           "{{.Name}}",
           "--cpus",
-          "1"
+          "{{ user `cpus` }}"
         ],
         [
           "set",
@@ -149,7 +149,7 @@
         ]
       ],
       "prlctl_version_file": ".prlctl_version",
-      "shutdown_command": "su -m root -c 'shutdown -p now'",
+      "shutdown_command": "echo 'vagrant' | su -m root -c 'shutdown -p now'",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_username": "vagrant",
@@ -174,13 +174,14 @@
         "fetch -o /tmp/install.sh http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `install_path`}} && chmod +x /tmp/install.sh && /tmp/install.sh {{ .Name }}<enter><wait>"
       ],
       "boot_wait": "7s",
-      "disk_size": 10140,
+      "disk_size": "{{user `disk_size`}}",
+      "headless": "{{ user `headless` }}",
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_url": "{{user `mirror`}}/{{user `mirror_directory`}}/{{user `iso_name`}}",
       "output_directory": "packer-{{user `template`}}-qemu",
-      "shutdown_command": "su -m root -c 'shutdown -p now'",
+      "shutdown_command": "echo 'vagrant' | su -m root -c 'shutdown -p now'",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_username": "vagrant",
@@ -209,7 +210,7 @@
         "https_proxy={{user `https_proxy`}}",
         "no_proxy={{user `no_proxy`}}"
       ],
-      "execute_command": "{{.Vars}} su -m root -c 'sh -eux {{.Path}}'",
+      "execute_command": "echo 'vagrant' | {{.Vars}} su -m root -c 'sh -eux {{.Path}}'",
       "scripts": [
         "scripts/common/metadata.sh",
         "scripts/freebsd/update.sh",
@@ -226,6 +227,8 @@
   "variables": {
     "box_basename": "freebsd-9.3",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
+    "cpus": "1",
+    "disk_size": "40960",
     "git_revision": "__unknown_git_revision__",
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
@@ -234,6 +237,7 @@
     "iso_checksum": "5a3c82653d77bba7d7ded8bd7efbedc09d52cf4045d98ce52a82c9e0f8fa9b0e",
     "iso_checksum_type": "sha256",
     "iso_name": "FreeBSD-9.3-RELEASE-amd64-disc1.iso",
+    "memory": "512",
     "metadata": "floppy/dummy_metadata.json",
     "mirror": "http://ftp.freebsd.org/pub/FreeBSD",
     "mirror_directory": "releases/amd64/amd64/ISO-IMAGES/9.3",
@@ -243,4 +247,3 @@
     "version": "2.1.TIMESTAMP"
   }
 }
-

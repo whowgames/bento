@@ -1,6 +1,243 @@
 # Change Log
 
-## [2.2.3](https://github.com/chef/bento/tree/2.2.3) (2015-12-26)
+## [2.3.2](https://github.com/chef/bento/tree/2.3.2) (2016-12-19)
+[Full Changelog](https://github.com/chef/bento/compare/2.3.1...2.3.2)
+
+**Added and Updated Platforms**
+- CentOS and RHEL 7.3 [\#739](https://github.com/chef/bento/pull/739) ([rickard-von-essen](https://github.com/rickard-von-essen))
+- SLES 12 SP2 [\#735](https://github.com/chef/bento/pull/735) ([mattiasgiese](https://github.com/mattiasgiese))
+
+**Improvements**
+- Update VMware tools to fix CentOS 7.3 build [\#743](https://github.com/chef/bento/pull/743) ([cheeseplus](https://github.com/cheeseplus))
+- Remove CentOS requiretty sudoers workaround, this is now the default [\#740](https://github.com/chef/bento/pull/740) ([mvermaes](https://github.com/mvermaes))
+
+**Pipeline**
+- Use the bento-ya gem, add builds.yml [\#745](https://github.com/chef/bento/pull/745) ([cheeseplus](https://github.com/cheeseplus))
+
+## [2.3.1](https://github.com/chef/bento/tree/2.3.1) (2016-11-30)
+[Full Changelog](https://github.com/chef/bento/compare/2.3.0...2.3.1)
+
+**Added and Updated Platforms**
+- Fedora 25 [\#725](https://github.com/chef/bento/pull/725) ([rickard-von-essen](https://github.com/rickard-von-essen))
+- FreeBSD 11.0 [\#492](https://github.com/chef/bento/pull/492) ([rickard-von-essen](https://github.com/rickard-von-essen))
+- macOS Sierra [\#715](https://github.com/chef/bento/pull/715) ([kameghamegha](https://github.com/kameghamegha))
+- OpenSUSE Leap 42.2 [\#723](https://github.com/chef/bento/pull/723) ([rickard-von-essen](https://github.com/rickard-von-essen))
+- Oracle Linux 6.8 [\#733](https://github.com/chef/bento/pull/733) ([cheeseplus](https://github.com/cheeseplus))
+- Oracle Linux 7.3 [\#733](https://github.com/chef/bento/pull/733) ([cheeseplus](https://github.com/cheeseplus))
+- Oracle Linux 5.11
+- Ubuntu 16.10 [\#697](https://github.com/chef/bento/pull/697) ([rickard-von-essen](https://github.com/rickard-von-essen))
+
+**Improvements**
+
+- RFC: Switch FreeBSD installation to bsdinstall [\#558](https://github.com/chef/bento/issues/558)
+- Reduce size of Linux images [\#718](https://github.com/chef/bento/pull/718) ([tas50](https://github.com/tas50))
+- Avoid breaking of chef package resource on fedora [\#709](https://github.com/chef/bento/pull/709) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Use UTF-8 locale on Debian / Ubuntu boxes [\#702](https://github.com/chef/bento/pull/702) ([iamthad](https://github.com/iamthad))
+- Install libpam-systemd on systemd-enabled Debian versions. Fix [\#712](https://github.com/chef/bento/issues/712). [\#693](https://github.com/chef/bento/pull/693) ([jfilip](https://github.com/jfilip))
+- Provisionally keeping Perl. Redux of \#714 [\#731](https://github.com/chef/bento/pull/731) ([cheeseplus](https://github.com/cheeseplus))
+- Remove unused http files [\#700](https://github.com/chef/bento/pull/700) ([rickard-von-essen](https://github.com/rickard-von-essen))
+- Remove unused scripts [\#698](https://github.com/chef/bento/pull/698) ([rickard-von-essen](https://github.com/rickard-von-essen))
+
+**Fixed bugs**
+
+- CentOS 5.11-x86\_64 building w/ vbox 5.1.x. Fix \#729. [\#730](https://github.com/chef/bento/pull/730) ([cheeseplus](https://github.com/cheeseplus))
+- Get Solaris 11 to build again [\#687](https://github.com/chef/bento/pull/687) ([tas50](https://github.com/tas50))
+- Get OmniOS boxes building again [\#683](https://github.com/chef/bento/pull/683) ([tas50](https://github.com/tas50))
+- Fix SLES builds [\#684](https://github.com/chef/bento/pull/684), [\#707](https://github.com/chef/bento/pull/707) ([tas50](https://github.com/tas50))
+
+**Known Issues**
+
+- OpenSuSE 13.2 builds for all providers but will not start properly under VMware Fusion/Workstation
+- OpenSuSE Leap 42.2 builds for all providers but will _only_ start properly under VMware Fusion/Workstation
+
+## [2.3.0](https://github.com/chef/bento/tree/2.3.0) (2016-09-30)
+[Full Changelog](https://github.com/chef/bento/compare/2.2.9...2.3.0)
+
+**SPECIAL NOTE:**
+
+Due to issues with upstream projects that bento relies upon, the 2.3.0 release may appear to break.
+Please ensure that Virtualbox is at least 5.1.6 and Vagrant at least 1.8.6 before reporting issues.
+
+**Added Platforms:**
+
+- add Debian 8.6 [\#669](https://github.com/chef/bento/issues/669)
+
+**Improvements:**
+
+- Changed the vagrant users UID from 900 to 1000. Fix \#688 [\#675](https://github.com/chef/bento/pull/675) ([rickard-von-essen](https://github.com/rickard-von-essen))
+- Updating build.sh with more env vars [\#672](https://github.com/chef/bento/pull/672) ([cheeseplus](https://github.com/cheeseplus))
+- Add script to disable system sleep for Mac OS X [\#656](https://github.com/chef/bento/pull/656) ([cblecker](https://github.com/cblecker))
+- Renames "ubuntu-server" task -\> "server" for Ubuntu 14.04 [\#654](https://github.com/chef/bento/pull/654) ([conorsch](https://github.com/conorsch))
+- Speed up booting process for FreeBSD saving 10 seconds in boot time [\#648](https://github.com/chef/bento/pull/648) ([amontalban](https://github.com/amontalban))
+- Check to see if release has already taken place [\#644](https://github.com/chef/bento/pull/644) ([cheeseplus](https://github.com/cheeseplus))
+- Add script for sles-12-sp1 [\#643](https://github.com/chef/bento/pull/643) ([oven](https://github.com/oven))
+- Refactored vmware tools scripts [\#638](https://github.com/chef/bento/pull/638) ([svpace](https://github.com/svpace))
+
+**Known Issues:**
+
+- CentOS 5 guests in VirtualBox 5.1.x fatally exit with a guru mediation error so v2.3.0 does not exist on Atlas
+
+**Tool Versions:**
+
+- Packer 0.11.0 (master)
+- VirtualBox 5.1.16
+- VMware Fusion 8.5.1
+- VMware Workstation 12.5.1
+- Parallels Pro 12.0.2
+- Vagrant 1.8.6
+
+## [2.2.9](https://github.com/chef/bento/tree/2.2.9) (2016-08-01)
+[Full Changelog](https://github.com/chef/bento/compare/2.2.8...2.2.9)
+
+**Improvements:**
+
+- OpenSUSE Leap 42.1: requires 768 Mb memory. [\#632](https://github.com/chef/bento/pull/632) ([rickard-von-essen](https://github.com/rickard-von-essen))
+- Update for 16.04.1 iso [\#629](https://github.com/chef/bento/pull/629)
+- For reals fixed 16.04 pkg lock bug [\#637](https://github.com/chef/bento/pull/637) ([cheeseplus](https://github.com/cheeseplus))
+
+**Fixed bugs:**
+
+- VMware: HGFS not working - Ubuntu 16.04 [\#591](https://github.com/chef/bento/issues/591)
+
+**EOL**
+
+ - Fedora 22
+
+ **Tool Versions:**
+
+ - Packer 0.10.1
+ - VirtualBox 5.0.26
+ - VMware Fusion 8.1.1
+ - VMware Workstation 12.1.1
+ - Parallels Pro 11.2.1
+
+## [2.2.8](https://github.com/chef/bento/tree/2.2.8) (2016-07-22)
+[Full Changelog](https://github.com/chef/bento/compare/2.2.7...2.2.8)
+
+**Improvements:**
+
+- Archiving all non-current builds [\#622](https://github.com/chef/bento/pull/622) ([cheeseplus](https://github.com/cheeseplus))
+- Add Fedora 24 and dedupe kickstart scripts [\#623](https://github.com/chef/bento/pull/623) ([tas50](https://github.com/tas50))
+- 16.04 should use open-vm-tools [\#621](https://github.com/chef/bento/pull/621) ([cheeseplus](https://github.com/cheeseplus))
+- Updated Debian 7 to 7.11 [\#608](https://github.com/chef/bento/pull/608) ([rickard-von-essen](https://github.com/rickard-von-essen))
+- Updated Debian 8 to 8.5 [\#607](https://github.com/chef/bento/pull/607) ([rickard-von-essen](https://github.com/rickard-von-essen))
+- Updated CentOS and RHEL to 6.8 [\#605](https://github.com/chef/bento/pull/605) ([rickard-von-essen](https://github.com/rickard-von-essen))
+- Disable automated package upgrades on Debian-like boxes [\#612](https://github.com/chef/bento/pull/612) ([jrb](https://github.com/jrb))
+- Fix new-style device naming from Network Manager on RHEL/CentOS 7 [\#617](https://github.com/chef/bento/pull/617) ([legal90](https://github.com/legal90))
+- update apt sources to use archive.debian.org for packages [\#614](https://github.com/chef/bento/pull/614) ([apollocatlin](https://github.com/apollocatlin))
+
+**Fixed bugs:**
+
+- apt.systemd.daily creates conflict in xenial64 box [\#616](https://github.com/chef/bento/issues/616)
+- FreeBSD: Root password not set! [\#610](https://github.com/chef/bento/issues/610)
+- ubuntu-16.04: unattended updates locking dpkg [\#609](https://github.com/chef/bento/issues/609)
+- Fix vagrant.sh failing on Solaris nodes [\#606](https://github.com/chef/bento/pull/606) ([tas50](https://github.com/tas50))
+
+**Tool Versions:**
+
+- Packer 0.10.1
+- VirtualBox 5.0.24
+- VMware Fusion 8.1.1
+- Parallels Pro 11.2.0
+
+## [2.2.7](https://github.com/chef/bento/tree/2.2.7) (2016-05-20)
+[Full Changelog](https://github.com/chef/bento/compare/2.2.6...2.2.7)
+
+**Improvements:**
+
+- Ubuntu: HWE BEGONE! pt 1 - Fix for VMware HGFS on 14.04 [\#584](https://github.com/chef/bento/pull/584) ([davidmnoriega](https://github.com/davidmnoriega))
+- Ubuntu: HWE BEGONE! pt 2 - The Pangolining [\#587](https://github.com/chef/bento/pull/587) ([cheeseplus](https://github.com/cheeseplus))
+- OpenSuSE: Switching to more reliable mirror [\#583](https://github.com/chef/bento/pull/583) ([cheeseplus](https://github.com/cheeseplus))
+- Added "disk\_size" user variable [\#596](https://github.com/chef/bento/pull/596) ([svpace](https://github.com/svpace))
+
+**Fixed bugs:**
+
+- Ubuntu 16.04: 70-persistent-net.rules "hack" messes with update-initramfs triggers [\#592](https://github.com/chef/bento/issues/592)
+- VMware: use correct script flags based on version [\#590](https://github.com/chef/bento/issues/590)
+
+**Tool Versions:**
+
+- Packer 0.10.1
+- VirtualBox 5.0.20
+- VMware Fusion 8.1.1
+- VMware Workstation 12.1.1
+- Parallels Pro 11.2.0
+
+## [2.2.6](https://github.com/chef/bento/tree/2.2.6) (2016-04-28)
+[Full Changelog](https://github.com/chef/bento/compare/2.2.5...2.2.6)
+
+**Tool Versions:**
+
+- Packer 0.10.0
+- VirtualBox 5.0.16
+- VMware Fusion 8.1.1
+- Parallels Pro 11.1.3
+
+**Added platforms:**
+
+- Debian 8.4 [\#559](https://github.com/chef/bento/pull/559) ([kenhys](https://github.com/kenhys))
+- Debian 7.10 [\#563](https://github.com/chef/bento/pull/563) ([kenhys](https://github.com/kenhys))
+- FreeBSD 10.3 [\#557](https://github.com/chef/bento/pull/557) ([tas50](https://github.com/tas50))
+- OmniOS 151018 [\#565](https://github.com/chef/bento/pull/565) ([tas50](https://github.com/tas50))
+- Ubuntu 16.04 [\#545](https://github.com/chef/bento/pull/545) ([cheeseplus](https://github.com/cheeseplus))
+
+**Fixed bugs:**
+
+- VMWare: tie network device to pci slot 32 [\#566](https://github.com/chef/bento/pull/566) ([rmoriz](https://github.com/rmoriz))
+- VMware: Fedora 23 box builds but can't connect [\#521](https://github.com/chef/bento/issues/521)
+- Publish Ubuntu 15.10 boxes on Atlas [\#506](https://github.com/chef/bento/issues/506)
+
+**Improvements:**
+
+- Standardize on 512MB minimum memory [\#574](https://github.com/chef/bento/issues/574)
+- Added headless option for QEMU builders [\#570](https://github.com/chef/bento/pull/570) ([jmatt](https://github.com/jmatt))
+
+## [2.2.5](https://github.com/chef/bento/tree/2.2.5) (2016-03-29)
+[Full Changelog](https://github.com/chef/bento/compare/2.2.4...2.2.5)
+
+**Merged pull requests:**
+
+- Ubuntu: use dist-upgrade and install build packages in preseed [\#551](https://github.com/chef/bento/pull/551) ([cheeseplus](https://github.com/cheeseplus))
+
+## [2.2.4](https://github.com/chef/bento/tree/2.2.4) (2016-03-29)
+[Full Changelog](https://github.com/chef/bento/compare/2.2.3...2.2.4)
+
+**Closed issues:**
+
+- CALL FOR MAINTAINERS [\#537](https://github.com/chef/bento/issues/537)
+- Proposal: Move bento under test-kitchen org [\#536](https://github.com/chef/bento/issues/536)
+- /tmp directory is cleaned upon restart? [\#535](https://github.com/chef/bento/issues/535)
+- bento/centos-7.2 missing from atlas [\#524](https://github.com/chef/bento/issues/524)
+- sles 12 mirror no more exist [\#520](https://github.com/chef/bento/issues/520)
+- Pipeline: Update to VMware Fusion 8.1.0 [\#519](https://github.com/chef/bento/issues/519)
+- error when building boxes with packer  [\#514](https://github.com/chef/bento/issues/514)
+- Ubuntu 12.04 HGFS module failing in VMWare [\#512](https://github.com/chef/bento/issues/512)
+- Uncompressed boxes for VMware and Parallels are to large [\#505](https://github.com/chef/bento/issues/505)
+- OpenSUSE Leap \(and Tumbleweed\) [\#504](https://github.com/chef/bento/issues/504)
+- Ubuntu 14.04 HGFS kernel module not working for VMWare 8.0.2 [\#496](https://github.com/chef/bento/issues/496)
+- Any support \(or planned support\) for building Amazon AMIs? [\#490](https://github.com/chef/bento/issues/490)
+- ARM builds [\#486](https://github.com/chef/bento/issues/486)
+- Minimize script results in large \(non-sparse\) image file for QEMU builder [\#369](https://github.com/chef/bento/issues/369)
+
+**Merged pull requests:**
+
+- Cutting 2.2.4 [\#550](https://github.com/chef/bento/pull/550) ([cheeseplus](https://github.com/cheeseplus))
+- Update mirror URL for Debian 8.2 [\#544](https://github.com/chef/bento/pull/544) ([legal90](https://github.com/legal90))
+- Updating maintainers [\#543](https://github.com/chef/bento/pull/543) ([cheeseplus](https://github.com/cheeseplus))
+- Updating for 14.04.4 release [\#542](https://github.com/chef/bento/pull/542) ([cheeseplus](https://github.com/cheeseplus))
+- Update the packer download URL and use 0.9.0 [\#540](https://github.com/chef/bento/pull/540) ([tas50](https://github.com/tas50))
+- Minor readme updates [\#539](https://github.com/chef/bento/pull/539) ([tas50](https://github.com/tas50))
+- Fix guest\_os\_type for VirtualBox [\#534](https://github.com/chef/bento/pull/534) ([juliandunn](https://github.com/juliandunn))
+- Sudo path changed [\#530](https://github.com/chef/bento/pull/530) ([scotthain](https://github.com/scotthain))
+- update solaris 11 box to 11.3 [\#528](https://github.com/chef/bento/pull/528) ([chris-rock](https://github.com/chris-rock))
+- update sha1 for omnios [\#527](https://github.com/chef/bento/pull/527) ([chris-rock](https://github.com/chris-rock))
+- Add support for Debian GNU/Linux 8.3 [\#526](https://github.com/chef/bento/pull/526) ([kenhys](https://github.com/kenhys))
+- simplify distro detection for RHEL-derivatives [\#525](https://github.com/chef/bento/pull/525) ([ceetav](https://github.com/ceetav))
+- Add support for OpenSUSE Leap 42.1 - x86\_64 [\#523](https://github.com/chef/bento/pull/523) ([rickard-von-essen](https://github.com/rickard-von-essen))
+- Fix links to Fedora 23 boxes. [\#518](https://github.com/chef/bento/pull/518) ([juliandunn](https://github.com/juliandunn))
+- Cutting 2.2.3 [\#515](https://github.com/chef/bento/pull/515) ([cheeseplus](https://github.com/cheeseplus))
+
+## [2.2.3](https://github.com/chef/bento/tree/2.2.3) (2015-12-28)
 [Full Changelog](https://github.com/chef/bento/compare/2.2.2...2.2.3)
 
 **Fixed bugs:**
@@ -140,19 +377,39 @@
 
 **Fixed bugs:**
 
+- Shortening vm\_name to avoid Parallels box corruption [\#400](https://github.com/chef/bento/pull/400) ([cheeseplus](https://github.com/cheeseplus))
+
+**Closed issues:**
+
+- Debian 8.1 [\#379](https://github.com/chef/bento/issues/379)
+- Chef on Centos boxes seems not be installed [\#352](https://github.com/chef/bento/issues/352)
+
+**Merged pull requests:**
+
+- \[debian-\*\] Improve DRYness, correctness, & speed of Debian templates. [\#404](https://github.com/chef/bento/pull/404) ([fnichol](https://github.com/fnichol))
+- \[freebsd-\*\] Improve DRYness, correctness, & speed of FreeBSD templates. [\#403](https://github.com/chef/bento/pull/403) ([fnichol](https://github.com/fnichol))
+- Fixing headless check [\#401](https://github.com/chef/bento/pull/401) ([cheeseplus](https://github.com/cheeseplus))
+- Adding support for headless mode [\#399](https://github.com/chef/bento/pull/399) ([cheeseplus](https://github.com/cheeseplus))
+- Box build pipeline [\#398](https://github.com/chef/bento/pull/398) ([cheeseplus](https://github.com/cheeseplus))
+- \[centos-\*\] Improve DRYness, correctness, and speed of CentOS templates. [\#396](https://github.com/chef/bento/pull/396) ([fnichol](https://github.com/fnichol))
+- \[macosx-\*, ubuntu-\*\] Remove name prefixes from templates. [\#395](https://github.com/chef/bento/pull/395) ([fnichol](https://github.com/fnichol))
+- \[ubuntu-\*\] Improve DRYness, correctness, and speed of Ubuntu templates. [\#394](https://github.com/chef/bento/pull/394) ([fnichol](https://github.com/fnichol))
+- Adding Debian 8.1 links, removing Debian 8.0 templates [\#393](https://github.com/chef/bento/pull/393) ([cheeseplus](https://github.com/cheeseplus))
+- Add @cheeseplus to MAINTAINERS.md [\#392](https://github.com/chef/bento/pull/392) ([fnichol](https://github.com/fnichol))
+
+## [2.0.0](https://github.com/chef/bento/tree/2.0.0) (2015-07-03)
+**Fixed bugs:**
+
 - Do not write metadata files when `bento build` is in dry run mode [\#368](https://github.com/chef/bento/issues/368)
 - fix OmniOS build under VMWare [\#178](https://github.com/chef/bento/issues/178)
-- Shortening vm\_name to avoid Parallels box corruption [\#400](https://github.com/chef/bento/pull/400) ([cheeseplus](https://github.com/cheeseplus))
 - Don't write metadata file in `bento build` dry run mode. [\#380](https://github.com/chef/bento/pull/380) ([fnichol](https://github.com/fnichol))
 
 **Closed issues:**
 
 - Release Debian 8.0 boxes [\#381](https://github.com/chef/bento/issues/381)
-- Debian 8.1 [\#379](https://github.com/chef/bento/issues/379)
 - Upload Ubuntu 15.04 to S3 Bucket [\#376](https://github.com/chef/bento/issues/376)
 - Add build metadata to boxes and build artifacts [\#364](https://github.com/chef/bento/issues/364)
 - Add support for Debian 8 [\#355](https://github.com/chef/bento/issues/355)
-- Chef on Centos boxes seems not be installed [\#352](https://github.com/chef/bento/issues/352)
 - centos-7.1 vmware box got uploaded as virtualbox [\#351](https://github.com/chef/bento/issues/351)
 - chef/centos-7.1 on atlas [\#346](https://github.com/chef/bento/issues/346)
 - Add support for Ubuntu 15.04 [\#345](https://github.com/chef/bento/issues/345)
@@ -217,16 +474,6 @@
 
 **Merged pull requests:**
 
-- \[debian-\*\] Improve DRYness, correctness, & speed of Debian templates. [\#404](https://github.com/chef/bento/pull/404) ([fnichol](https://github.com/fnichol))
-- \[freebsd-\*\] Improve DRYness, correctness, & speed of FreeBSD templates. [\#403](https://github.com/chef/bento/pull/403) ([fnichol](https://github.com/fnichol))
-- Fixing headless check [\#401](https://github.com/chef/bento/pull/401) ([cheeseplus](https://github.com/cheeseplus))
-- Adding support for headless mode [\#399](https://github.com/chef/bento/pull/399) ([cheeseplus](https://github.com/cheeseplus))
-- Box build pipeline [\#398](https://github.com/chef/bento/pull/398) ([cheeseplus](https://github.com/cheeseplus))
-- \[centos-\*\] Improve DRYness, correctness, and speed of CentOS templates. [\#396](https://github.com/chef/bento/pull/396) ([fnichol](https://github.com/fnichol))
-- \[macosx-\*, ubuntu-\*\] Remove name prefixes from templates. [\#395](https://github.com/chef/bento/pull/395) ([fnichol](https://github.com/fnichol))
-- \[ubuntu-\*\] Improve DRYness, correctness, and speed of Ubuntu templates. [\#394](https://github.com/chef/bento/pull/394) ([fnichol](https://github.com/fnichol))
-- Adding Debian 8.1 links, removing Debian 8.0 templates [\#393](https://github.com/chef/bento/pull/393) ([cheeseplus](https://github.com/cheeseplus))
-- Add @cheeseplus to MAINTAINERS.md [\#392](https://github.com/chef/bento/pull/392) ([fnichol](https://github.com/fnichol))
 - \[macosx-\*\] Add support for {http,https,no}\_proxy environment variables. [\#391](https://github.com/chef/bento/pull/391) ([fnichol](https://github.com/fnichol))
 - Remove files that are no longer referenced by any templates. [\#390](https://github.com/chef/bento/pull/390) ([fnichol](https://github.com/fnichol))
 - \[macosx-\*\] Improve DRYness & correctness of Mac templates. [\#389](https://github.com/chef/bento/pull/389) ([fnichol](https://github.com/fnichol))

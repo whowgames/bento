@@ -5,7 +5,7 @@
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 40960,
+      "disk_size": "{{user `disk_size`}}",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "Oracle_64",
       "hard_drive_interface": "sata",
@@ -26,13 +26,19 @@
           "modifyvm",
           "{{.Name}}",
           "--memory",
-          "384"
+          "{{ user `memory` }}"
         ],
         [
           "modifyvm",
           "{{.Name}}",
           "--cpus",
-          "1"
+          "{{ user `cpus` }}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--paravirtprovider",
+          "none"
         ]
       ],
       "virtualbox_version_file": ".vbox_version",
@@ -43,7 +49,7 @@
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 40960,
+      "disk_size": "{{user `disk_size`}}",
       "guest_os_type": "oraclelinux-64",
       "headless": "{{ user `headless` }}",
       "http_directory": "http",
@@ -61,8 +67,8 @@
       "vm_name": "{{ user `template` }}",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
-        "memsize": "384",
-        "numvcpus": "1"
+        "memsize": "{{ user `memory` }}",
+        "numvcpus": "{{ user `cpus` }}"
       }
     },
     {
@@ -70,7 +76,7 @@
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 40960,
+      "disk_size": "{{user `disk_size`}}",
       "guest_os_type": "centos",
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
@@ -83,13 +89,13 @@
           "set",
           "{{.Name}}",
           "--memsize",
-          "384"
+          "{{ user `memory` }}"
         ],
         [
           "set",
           "{{.Name}}",
           "--cpus",
-          "1"
+          "{{ user `cpus` }}"
         ]
       ],
       "prlctl_version_file": ".prlctl_version",
@@ -106,7 +112,8 @@
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 40960,
+      "disk_size": "{{user `disk_size`}}",
+      "headless": "{{ user `headless` }}",
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
@@ -145,7 +152,9 @@
         "scripts/common/metadata.sh",
         "scripts/common/vagrant.sh",
         "scripts/common/sshd.sh",
-        "scripts/common/vmtools.sh",
+        "scripts/common/virtualbox.sh",
+        "scripts/common/vmware.sh",
+        "scripts/common/parallels.sh",
         "scripts/centos/cleanup.sh",
         "scripts/common/minimize.sh"
       ],
@@ -156,6 +165,8 @@
     "arch": "64",
     "box_basename": "oracle-5.11",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
+    "cpus": "1",
+    "disk_size": "40960",
     "git_revision": "__unknown_git_revision__",
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
@@ -164,6 +175,7 @@
     "iso_checksum_type": "sha1",
     "iso_name": "Enterprise-R5-U11-Server-x86_64-dvd.iso",
     "ks_path": "centos-5.11/ks.cfg",
+    "memory": "512",
     "metadata": "floppy/dummy_metadata.json",
     "mirror": "http://mirrors.dotsrc.org/oracle-linux",
     "mirror_directory": "EL5/U11/x86_64",

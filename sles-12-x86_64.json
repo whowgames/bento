@@ -4,12 +4,12 @@
       "boot_command": [
         "<esc><enter><wait>",
         "linux netdevice=eth0 netsetup=dhcp install=cd:/<wait>",
-        " lang=en_US autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `autoinst_cfg`}}<wait>",
+        " lang=en_US.UTF-8 autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `autoinst_cfg`}}<wait>",
         " textmode=1<wait>",
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 20480,
+      "disk_size": "{{user `disk_size`}}",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "OpenSUSE_64",
       "hard_drive_interface": "sata",
@@ -30,13 +30,13 @@
           "modifyvm",
           "{{.Name}}",
           "--memory",
-          "480"
+          "{{ user `memory` }}"
         ],
         [
           "modifyvm",
           "{{.Name}}",
           "--cpus",
-          "1"
+          "{{ user `cpus` }}"
         ]
       ],
       "virtualbox_version_file": ".vbox_version",
@@ -46,12 +46,12 @@
       "boot_command": [
         "<esc><enter><wait>",
         "linux netdevice=eth0 netsetup=dhcp install=cd:/<wait>",
-        " lang=en_US autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `autoinst_cfg`}}<wait>",
+        " lang=en_US.UTF-8 autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `autoinst_cfg`}}<wait>",
         " textmode=1<wait>",
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 20480,
+      "disk_size": "{{user `disk_size`}}",
       "guest_os_type": "sles11-64",
       "headless": "{{ user `headless` }}",
       "http_directory": "http",
@@ -69,20 +69,20 @@
       "vm_name": "{{ user `template` }}",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
-        "memsize": "480",
-        "numvcpus": "1"
+        "memsize": "{{ user `memory` }}",
+        "numvcpus": "{{ user `cpus` }}"
       }
     },
     {
       "boot_command": [
         "<esc><enter><wait>",
         "linux netdevice=eth0 netsetup=dhcp install=cd:/<wait>",
-        " lang=en_US autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `autoinst_cfg`}}<wait>",
+        " lang=en_US.UTF-8 autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `autoinst_cfg`}}<wait>",
         " textmode=1<wait>",
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 20480,
+      "disk_size": "{{user `disk_size`}}",
       "guest_os_type": "suse",
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
@@ -95,13 +95,13 @@
           "set",
           "{{.Name}}",
           "--memsize",
-          "480"
+          "{{ user `memory` }}"
         ],
         [
           "set",
           "{{.Name}}",
           "--cpus",
-          "1"
+          "{{ user `cpus` }}"
         ]
       ],
       "prlctl_version_file": ".prlctl_version",
@@ -117,12 +117,13 @@
       "boot_command": [
         "<esc><enter><wait>",
         "linux netdevice=eth0 netsetup=dhcp install=cd:/<wait>",
-        " lang=en_US autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `autoinst_cfg`}}<wait>",
+        " lang=en_US.UTF-8 autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `autoinst_cfg`}}<wait>",
         " textmode=1<wait>",
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 20480,
+      "disk_size": "{{user `disk_size`}}",
+      "headless": "{{ user `headless` }}",
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
@@ -162,7 +163,9 @@
         "scripts/common/sshd.sh",
         "scripts/common/vagrant.sh",
         "scripts/sles/unsupported-modules.sh",
-        "scripts/common/vmtools.sh",
+        "scripts/common/virtualbox.sh",
+        "scripts/common/vmware.sh",
+        "scripts/common/parallels.sh",
         "scripts/sles/sudoers.sh",
         "scripts/sles/zypper-locks.sh",
         "scripts/sles/remove-dvd-source.sh",
@@ -173,10 +176,14 @@
     }
   ],
   "variables": {
+    "_DOWNLOAD_SITE": "https://www.suse.com/products/server/download",
+    "_README": "You must download the automated installer iso from the following page, and then place it in the packer_cache dir",
     "arch": "64",
     "autoinst_cfg": "sles-12/sles-12-x86_64-autoinst.xml",
     "box_basename": "sles-12",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
+    "cpus": "1",
+    "disk_size": "20480",
     "git_revision": "__unknown_git_revision__",
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
@@ -184,8 +191,9 @@
     "iso_checksum": "58086fca0441b1d44c7a51c5ee64e1bd4365466fcee48ec92c4f39d07739aeed",
     "iso_checksum_type": "sha256",
     "iso_name": "SLE-12-Server-DVD-x86_64-GM-DVD1.iso",
+    "memory": "512",
     "metadata": "floppy/dummy_metadata.json",
-    "mirror": "http://cdn.novell.com/prot/1RBC-NrdggI~",
+    "mirror": "./packer_cache",
     "name": "sles-12",
     "template": "sles-12-x86_64",
     "version": "2.2.TIMESTAMP"

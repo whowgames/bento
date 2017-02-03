@@ -12,13 +12,13 @@
         " console-setup/layoutcode=us<wait>",
         " console-setup/modelcode=pc105<wait>",
         " debconf/frontend=noninteractive<wait>",
-        " debian-installer=en_US<wait>",
+        " debian-installer=en_US.UTF-8<wait>",
         " fb=false<wait>",
         " initrd=/install/initrd.gz<wait>",
         " kbd-chooser/method=us<wait>",
         " keyboard-configuration/layout=USA<wait>",
         " keyboard-configuration/variant=USA<wait>",
-        " locale=en_US<wait>",
+        " locale=en_US.UTF-8<wait>",
         " netcfg/get_domain=vm<wait>",
         " netcfg/get_hostname=vagrant<wait>",
         " grub-installer/bootdev=/dev/sda<wait>",
@@ -28,7 +28,7 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 40960,
+      "disk_size": "{{user `disk_size`}}",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "Ubuntu_64",
       "hard_drive_interface": "sata",
@@ -49,13 +49,13 @@
           "modifyvm",
           "{{.Name}}",
           "--memory",
-          "384"
+          "{{ user `memory` }}"
         ],
         [
           "modifyvm",
           "{{.Name}}",
           "--cpus",
-          "1"
+          "{{ user `cpus` }}"
         ]
       ],
       "virtualbox_version_file": ".vbox_version",
@@ -73,13 +73,13 @@
         " console-setup/layoutcode=us<wait>",
         " console-setup/modelcode=pc105<wait>",
         " debconf/frontend=noninteractive<wait>",
-        " debian-installer=en_US<wait>",
+        " debian-installer=en_US.UTF-8<wait>",
         " fb=false<wait>",
         " initrd=/install/initrd.gz<wait>",
         " kbd-chooser/method=us<wait>",
         " keyboard-configuration/layout=USA<wait>",
         " keyboard-configuration/variant=USA<wait>",
-        " locale=en_US<wait>",
+        " locale=en_US.UTF-8<wait>",
         " netcfg/get_domain=vm<wait>",
         " netcfg/get_hostname=vagrant<wait>",
         " grub-installer/bootdev=/dev/sda<wait>",
@@ -89,7 +89,7 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 40960,
+      "disk_size": "{{user `disk_size`}}",
       "guest_os_type": "ubuntu-64",
       "headless": "{{ user `headless` }}",
       "http_directory": "http",
@@ -107,8 +107,9 @@
       "vm_name": "{{ user `template` }}",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
-        "memsize": "384",
-        "numvcpus": "1"
+        "ethernet0.pciSlotNumber": "32",
+        "memsize": "{{ user `memory` }}",
+        "numvcpus": "{{ user `cpus` }}"
       }
     },
     {
@@ -123,13 +124,13 @@
         " console-setup/layoutcode=us<wait>",
         " console-setup/modelcode=pc105<wait>",
         " debconf/frontend=noninteractive<wait>",
-        " debian-installer=en_US<wait>",
+        " debian-installer=en_US.UTF-8<wait>",
         " fb=false<wait>",
         " initrd=/install/initrd.gz<wait>",
         " kbd-chooser/method=us<wait>",
         " keyboard-configuration/layout=USA<wait>",
         " keyboard-configuration/variant=USA<wait>",
-        " locale=en_US<wait>",
+        " locale=en_US.UTF-8<wait>",
         " netcfg/get_domain=vm<wait>",
         " netcfg/get_hostname=vagrant<wait>",
         " grub-installer/bootdev=/dev/sda<wait>",
@@ -139,7 +140,7 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 40960,
+      "disk_size": "{{user `disk_size`}}",
       "guest_os_type": "ubuntu",
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
@@ -152,13 +153,13 @@
           "set",
           "{{.Name}}",
           "--memsize",
-          "384"
+          "{{ user `memory` }}"
         ],
         [
           "set",
           "{{.Name}}",
           "--cpus",
-          "1"
+          "{{ user `cpus` }}"
         ]
       ],
       "prlctl_version_file": ".prlctl_version",
@@ -182,13 +183,13 @@
         " console-setup/layoutcode=us<wait>",
         " console-setup/modelcode=pc105<wait>",
         " debconf/frontend=noninteractive<wait>",
-        " debian-installer=en_US<wait>",
+        " debian-installer=en_US.UTF-8<wait>",
         " fb=false<wait>",
         " initrd=/install/initrd.gz<wait>",
         " kbd-chooser/method=us<wait>",
         " keyboard-configuration/layout=USA<wait>",
         " keyboard-configuration/variant=USA<wait>",
-        " locale=en_US<wait>",
+        " locale=en_US.UTF-8<wait>",
         " netcfg/get_domain=vm<wait>",
         " netcfg/get_hostname=vagrant<wait>",
         " grub-installer/bootdev=/dev/vda<wait>",
@@ -198,7 +199,8 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 40960,
+      "disk_size": "{{user `disk_size`}}",
+      "headless": "{{ user `headless` }}",
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
@@ -240,7 +242,9 @@
         "scripts/ubuntu/networking.sh",
         "scripts/ubuntu/sudoers.sh",
         "scripts/ubuntu/vagrant.sh",
-        "scripts/common/vmtools.sh",
+        "scripts/common/virtualbox.sh",
+        "scripts/common/vmware.sh",
+        "scripts/common/parallels.sh",
         "scripts/ubuntu/cleanup.sh",
         "scripts/common/minimize.sh"
       ],
@@ -250,6 +254,8 @@
   "variables": {
     "box_basename": "ubuntu-15.10",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
+    "cpus": "1",
+    "disk_size": "40960",
     "git_revision": "__unknown_git_revision__",
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
@@ -257,6 +263,7 @@
     "iso_checksum": "86aa35a986eba6e5ad30e3d486d57efe6803ae7ea4859b0216953e9e62871131",
     "iso_checksum_type": "sha256",
     "iso_name": "ubuntu-15.10-server-amd64.iso",
+    "memory": "512",
     "metadata": "floppy/dummy_metadata.json",
     "mirror": "http://releases.ubuntu.com",
     "mirror_directory": "15.10",
@@ -267,4 +274,3 @@
     "version": "2.1.TIMESTAMP"
   }
 }
-

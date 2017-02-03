@@ -31,7 +31,7 @@
         "svcadm restart ssh<enter><wait>"
       ],
       "boot_wait": "30s",
-      "disk_size": 40960,
+      "disk_size": "{{user `disk_size`}}",
       "guest_os_type": "OpenSolaris_64",
       "headless": "{{ user `headless` }}",
       "iso_checksum": "{{user `iso_checksum`}}",
@@ -48,13 +48,13 @@
           "modifyvm",
           "{{.Name}}",
           "--memory",
-          "1024"
+          "{{ user `memory` }}"
         ],
         [
           "modifyvm",
           "{{.Name}}",
           "--cpus",
-          "1"
+          "{{ user `cpus` }}"
         ]
       ],
       "virtualbox_version_file": ".vbox_version",
@@ -93,7 +93,7 @@
         "svcadm restart ssh<enter><wait>"
       ],
       "boot_wait": "30s",
-      "disk_size": 40960,
+      "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
         "floppy/omnios/README.TXT"
       ],
@@ -112,8 +112,8 @@
       "vm_name": "{{ user `template` }}",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
-        "memsize": "1024",
-        "numvcpus": "1"
+        "memsize": "{{ user `memory` }}",
+        "numvcpus": "{{ user `cpus` }}"
       }
     },
     {
@@ -149,7 +149,7 @@
         "svcadm restart ssh<enter><wait>"
       ],
       "boot_wait": "30s",
-      "disk_size": 40960,
+      "disk_size": "{{user `disk_size`}}",
       "guest_os_type": "opensolaris",
       "hard_drive_interface": "ide",
       "iso_checksum": "{{user `iso_checksum`}}",
@@ -162,13 +162,13 @@
           "set",
           "{{.Name}}",
           "--memsize",
-          "1024"
+          "{{ user `memory` }}"
         ],
         [
           "set",
           "{{.Name}}",
           "--cpus",
-          "1"
+          "{{ user `cpus` }}"
         ]
       ],
       "shutdown_command": "/usr/sbin/shutdown -g 0 -y -i 5",
@@ -217,13 +217,16 @@
     "arch": "64",
     "box_basename": "omnios-r151014",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
+    "cpus": "1",
+    "disk_size": "40960",
     "git_revision": "__unknown_git_revision__",
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
-    "iso_checksum": "c2cdcb6e7a51a119fc73528e3c3c24c9ef146185",
+    "iso_checksum": "a19c8b0c0b84d4903ea697c5038249dcfb64efd5",
     "iso_checksum_type": "sha1",
     "iso_name": "OmniOS_Text_r151014.iso",
+    "memory": "1024",
     "metadata": "floppy/dummy_metadata.json",
     "mirror": "http://omnios.omniti.com",
     "mirror_directory": "media",
