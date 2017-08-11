@@ -30,7 +30,8 @@
         "numvcpus": "{{ user `cpus` }}",
         "smc.present": "TRUE",
         "usb.present": "TRUE"
-      }
+      },
+      "vmx_remove_ethernet_interfaces": true
     },
     {
       "boot_wait": "2s",
@@ -244,7 +245,7 @@
     "name": "macosx-10.9",
     "no_proxy": "{{env `no_proxy`}}",
     "template": "macosx-10.9",
-    "version": "2.1.TIMESTAMP"
+    "version": "TIMESTAMP"
   }
 }
 
