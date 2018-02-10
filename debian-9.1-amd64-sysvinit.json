@@ -17,6 +17,7 @@
         "console-setup/ask_detect=false <wait>",
         "console-keymaps-at/keymap=us <wait>",
         "grub-installer/bootdev=/dev/sda <wait>",
+        "net.ifnames=0 <wait>",
         "<enter><wait>"
       ],
       "boot_wait": "10s",
