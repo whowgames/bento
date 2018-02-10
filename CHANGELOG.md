@@ -1,5 +1,99 @@
 # Change Log
 
+## [201802.02.0](https://github.com/chef/bento/tree/201802.02.0) (2018-02-02)
+
+**Improvements**
+- Ubuntu: remove linux-firmware bloat w/o removing package and breaking upgrades
+- macOS: enable autologin for vagrant user
+
+**EOL**
+- Ubuntu 17.04
+- Windows Nano TP3
+
+**Tooling**
+- VirtualBox 5.2.6
+- Parallels 13.2.0
+- VMware Fusion 10.1.1
+- Packer 1.1.3
+- Vagrant 2.0.1
+
+## [201801.05.0](https://github.com/chef/bento/tree/201801.05.0) (2018-01-05)
+
+**New Platforms**
+- Oracle Linux 7.4
+
+**Tooling**
+- VirtualBox 5.2.4
+- Parallels 13.2.0
+- Packer 1.1.3
+- Vagrant 2.0.1
+
+## [201801.02.0](https://github.com/chef/bento/tree/201801.02.0) (2018-01-02)
+
+**New Platforms**
+- Debian 9.3
+- Debian 8.10
+- Fedora 27
+
+**Hyper-V Boxes (experimental)**
+- centos-7.4
+- centos-6.9
+- ubuntu-17.10
+- ubuntu-17.04
+- ubuntu-16.04
+- ubuntu-14.04
+
+**Tooling**
+- VirtualBox 5.2.4
+- VMware Fusion 10.1.0
+- Parallels 13.2.0
+- Hyper-V 10.0.16299.15
+- Packer 1.1.3
+- Vagrant 2.0.1
+
+## [201710.31.0](https://github.com/chef/bento/tree/201710.31.0) (2017-10-31)
+
+**New Platforms**
+- Ubuntu 17.10
+- Debian 9.2
+- Debian 8.10
+- FreeBSD 10.4
+- CentOS 7.4
+
+**Tooling**
+- VirtualBox 5.1.30
+- VMware Fusion 10.0.1
+- Parallels 13.1.1
+- Packer 1.1.1
+- Vagrant 2.0.0
+
+**Fixes/Updates**
+- SLES fixes
+- 1GB of RAM as default for boxen
+- re-organized into platform folders
+- hyper-V fixes
+- qemu fixes
+
+
+## [201708.22.0](https://github.com/chef/bento/tree/201708.22.0) (2017-08-22)
+
+**New**
+- Debian 9.1
+- Debian 8.9
+- FreeBSD 11.1
+
+**Improvements**
+- Top level slugs for point release platforms, i.e. centos-7 -> centos-7.3
+- Move to date based versioning scheme `YYYYMM.DD.PATCH`
+- Automatically update RHEL-ish platforms as we do with other platforms
+
+**Tooling**
+- VirtualBox 5.1.26
+- VMware Fusion 8.5.8
+- VMware Workstation 12.5.7
+- Parallels 13.0.0
+- Packer 1.0.4
+
 ## [2.3.8](https://github.com/chef/bento/tree/2.3.8) (2017-07-20)
 
 **New**
