@@ -21,7 +21,7 @@
 			"shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
 			"shutdown_timeout": "15m",
 			"floppy_files": [
-				"answer_files/2016/Autounattend.xml"
+				"answer_files/2019/Autounattend.xml"
 			]
 		},
 		{
@@ -45,7 +45,7 @@
 			"shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
 			"shutdown_timeout": "15m",
 			"floppy_files": [
-				"answer_files/2016/Autounattend.xml"
+				"answer_files/2019/Autounattend.xml"
 			]
 		}
 	],
@@ -106,8 +106,8 @@
 	"variables": {
 		"guest_additions_mode": "attach",
 		"headless": "true",
-		"iso_checksum": "772700802951b36c8cb26a61c040b9a8dc3816a3",
-		"iso_url": "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
-		"template": "windows-2016-standard"
+		"iso_checksum": "91e3a2f1acc39af21353c7cc105c799494d7539f",
+		"iso_url": "https://software-download.microsoft.com/download/sg/17763.253.190108-0006.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us.iso",
+		"template": "windows-2019-standard"
 	}
 }

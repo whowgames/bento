@@ -1,6 +1,44 @@
 {
   "builders": [
     {
+      "type": "qemu",
+      "vm_name": "{{ user `template` }}",
+      "name": "{{ user `template` }}",
+      "output_directory": "../builds/packer-{{user `template`}}-libvirt",
+      "accelerator": "kvm",
+      "boot_wait": "10s",
+      "boot_command": [
+          "<tab> linux ks=http://{{.HTTPIP}}:{{.HTTPPort}}/{{user `ks_path`}}<enter><wait>"
+      ],
+      "format": "qcow2",
+      "disk_size": "{{user `disk_size`}}",
+      "disk_discard": "unmap",
+      "disk_cache": "unsafe",
+      "disk_compression": true,
+      "disk_interface": "virtio-scsi",
+      "net_device": "virtio-net",
+      "qemuargs": [
+          [
+              "-m",
+              "{{ user `memory` }}"
+          ],
+          [
+              "-smp",
+              "cpus={{ user `cpus` }}"
+          ]
+      ],
+      "http_directory": "http",
+      "headless": "{{ user `headless` }}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `mirror`}}/{{user `mirror_directory`}}/{{user `iso_name`}}",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now"
+    },
+    {
       "boot_command": [
         "<tab> linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
       ],
@@ -157,7 +195,7 @@
   ],
   "variables": {
     "arch": "64",
-    "box_basename": "fedora-27",
+    "box_basename": "fedora-29",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
     "cpus": "1",
     "disk_size": "65536",
@@ -165,16 +203,16 @@
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
-    "iso_checksum": "e383dd414bb57231b20cbed11c4953cac71785f7d4f5990b0df5ad534a0ba95c",
+    "iso_checksum": "129d131a55e5bd518f593f0eacdce095f7c795fe7ccbef1f3f6aeb2ff9f99f35",
     "iso_checksum_type": "sha256",
-    "iso_name": "Fedora-Server-dvd-x86_64-27-1.6.iso",
-    "ks_path": "ks.cfg",
+    "iso_name": "Fedora-Server-dvd-x86_64-29-1.2.iso",
+    "ks_path": "ks-fedora29.cfg",
     "memory": "1024",
     "mirror": "http://download.fedoraproject.org/pub/fedora/linux",
-    "mirror_directory": "releases/27/Server/x86_64/iso",
-    "name": "fedora-27",
+    "mirror_directory": "releases/29/Server/x86_64/iso",
+    "name": "fedora-29",
     "no_proxy": "{{env `no_proxy`}}",
-    "template": "fedora-27-x86_64",
+    "template": "fedora-29-x86_64",
     "version": "TIMESTAMP"
   }
 }
