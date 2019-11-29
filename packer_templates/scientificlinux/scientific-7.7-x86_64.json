@@ -6,15 +6,16 @@
       ],
       "boot_wait": "10s",
       "disk_size": "{{user `disk_size`}}",
+      "guest_additions_url": "{{ user `guest_additions_url` }}",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "RedHat_64",
       "hard_drive_interface": "sata",
       "headless": "{{ user `headless` }}",
-      "http_directory": "http",
+      "http_directory": "{{template_dir}}/http",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_url": "{{user `mirror`}}/{{user `mirror_directory`}}/{{user `iso_name`}}",
-      "output_directory": "../../builds/packer-{{user `template`}}-virtualbox",
+      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-virtualbox",
       "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -41,7 +42,7 @@
   ],
   "post-processors": [
     {
-      "output": "../../builds/{{user `box_basename`}}.{{.Provider}}.box",
+      "output": "{{ user `build_directory` }}/{{user `box_basename`}}.{{.Provider}}.box",
       "type": "vagrant"
     }
   ],
@@ -56,20 +57,21 @@
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
       "expect_disconnect": true,
       "scripts": [
-        "../centos/scripts/update.sh",
-        "../_common/motd.sh",
-        "../_common/sshd.sh",
-        "../centos/scripts/networking.sh",
-        "../_common/vagrant.sh",
-        "../_common/virtualbox.sh",
-        "../centos/scripts/cleanup.sh",
-        "../_common/minimize.sh"
+        "{{template_dir}}/../centos/scripts/update.sh",
+        "{{template_dir}}/../_common/motd.sh",
+        "{{template_dir}}/../_common/sshd.sh",
+        "{{template_dir}}/../centos/scripts/networking.sh",
+        "{{template_dir}}/../_common/vagrant.sh",
+        "{{template_dir}}/../_common/virtualbox.sh",
+        "{{template_dir}}/../centos/scripts/cleanup.sh",
+        "{{template_dir}}/../_common/minimize.sh"
       ],
       "type": "shell"
     }
   ],
   "variables": {
-    "box_basename": "SL-7.6",
+    "box_basename": "scientific-7.7",
+    "build_directory": "../../builds",
     "build_timestamp": "{{isotime \"20080506150405\"}}",
     "cpus": "1",
     "disk_size": "65536",
@@ -79,14 +81,15 @@
     "https_proxy": "{{env `https_proxy`}}",
     "hyperv_generation": "1",
     "hyperv_switch": "{{env `hyperv_switch`}}",
-    "iso_checksum": "2fdecb713bdaf3e253a9b8a11c54be6d17be38bb0c59b4346ff23a10c249bed1",
+    "guest_additions_url": "",
+    "iso_checksum": "4490f72797834a958396af929c0da6a97a69049eddbfe969a8903b5ce0fddb99",
     "iso_checksum_type": "sha256",
     "iso_name": "SL-7-DVD-x86_64.iso",
     "ks_path": "7/ks.cfg",
     "memory": "1024",
     "mirror": "http://www.gtlib.gatech.edu/pub/scientific",
-    "mirror_directory": "7.6/x86_64/iso",
-    "name": "SL-7.6",
+    "mirror_directory": "7.7/x86_64/iso",
+    "name": "scientific-7.7",
     "no_proxy": "{{env `no_proxy`}}",
     "template": "scientific-7-x86_64",
     "version": "TIMESTAMP"
