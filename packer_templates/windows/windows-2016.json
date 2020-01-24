@@ -2,7 +2,8 @@
   "builders": [{
       "type": "virtualbox-iso",
       "vboxmanage": [
-        ["modifyvm", "{{.Name}}", "--vram", "48"]
+        ["modifyvm", "{{.Name}}", "--vram", "48"],
+        ["modifyvm", "{{.Name}}", "--audio", "none"]
       ],
       "memory": "{{ user `memory` }}",
       "cpus": "{{ user `cpus` }}",
@@ -10,6 +11,8 @@
       "guest_additions_url": "{{ user `guest_additions_url` }}",
       "guest_additions_path": "C:/users/vagrant/VBoxGuestAdditions.iso",
       "guest_os_type": "Windows2016_64",
+      "hard_drive_interface": "sata",
+      "iso_interface": "sata",
       "headless": "{{ user `headless` }}",
       "iso_url": "{{ user `iso_url` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
@@ -22,7 +25,7 @@
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "shutdown_timeout": "15m",
       "floppy_files": [
-        "{{template_dir}}/answer_files/2016/Autounattend.xml"
+        "{{ user `floppy_dir` }}/{{ user `unattended_file_path` }}"
       ]
     },
     {
@@ -43,7 +46,7 @@
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "shutdown_timeout": "15m",
       "floppy_files": [
-        "{{template_dir}}/answer_files/2016/Autounattend.xml"
+        "{{ user `floppy_dir` }}/{{ user `unattended_file_path` }}"
       ]
     }
   ],
@@ -55,7 +58,9 @@
         "packer::disable_uac",
         "packer::disable_restore",
         "packer::disable_windows_update",
-        "packer::remove_defender"
+        "packer::remove_defender",
+        "packer::configure_power",
+        "packer::disable_screensaver"
       ]
     },
     {
@@ -70,8 +75,7 @@
         "packer::features",
         "packer::enable_file_sharing",
         "packer::enable_remote_desktop",
-        "packer::ui_tweaks",
-        "packer::power"
+        "packer::ui_tweaks"
       ]
     },
     {
@@ -110,6 +114,8 @@
     "iso_checksum": "772700802951b36c8cb26a61c040b9a8dc3816a3",
     "iso_url": "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
     "build_directory": "../../builds",
+    "floppy_dir": "{{template_dir}}/answer_files",
+    "unattended_file_path": "2016/Autounattend.xml",
     "template": "windows-2016-standard"
   }
 }

@@ -185,7 +185,7 @@
     }
   ],
   "variables": {
-    "box_basename": "freebsd-12.0-i386",
+    "box_basename": "freebsd-12.1-i386",
     "build_directory": "../../builds",
     "http_directory": "{{template_dir}}/http",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
@@ -196,16 +196,16 @@
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
     "install_path": "freebsd-11/installerconfig",
-    "iso_checksum": "c2a2a18e9e803e1849533c5c7640f1eec058ef1426fb8fa62769d2fcbd58d485",
+    "iso_checksum": "07b10e098e7c9b5e920679d3a9b3d12628f0b918c6e3962620b7f570a82cf41d",
     "iso_checksum_type": "sha256",
-    "iso_name": "FreeBSD-12.0-RELEASE-i386-disc1.iso",
+    "iso_name": "FreeBSD-12.1-RELEASE-i386-disc1.iso",
     "memory": "1024",
     "mirror": "https://download.freebsd.org/ftp",
-    "mirror_directory": "releases/i386/i386/ISO-IMAGES/12.0",
-    "name": "freebsd-12.0-i386",
+    "mirror_directory": "releases/i386/i386/ISO-IMAGES/12.1",
+    "name": "freebsd-12.1-i386",
     "no_proxy": "{{env `no_proxy`}}",
     "pkg_branch": "quarterly",
-    "template": "freebsd-12.0-i386",
+    "template": "freebsd-12.1-i386",
     "version": "TIMESTAMP"
   }
 }

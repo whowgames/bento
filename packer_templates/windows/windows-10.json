@@ -12,6 +12,7 @@
       "guest_additions_path": "C:/users/vagrant/VBoxGuestAdditions.iso",
       "guest_os_type": "Windows10_64",
       "hard_drive_interface": "sata",
+      "iso_interface": "sata",
       "headless": "{{ user `headless` }}",
       "iso_url": "{{ user `iso_url` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
@@ -24,7 +25,7 @@
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "shutdown_timeout": "15m",
       "floppy_files": [
-        "{{template_dir}}/answer_files/10/Autounattend.xml",
+        "{{ user `floppy_dir` }}/{{ user `unattended_file_path` }}",
         "{{template_dir}}/scripts/base_setup.ps1"
       ]
     },
@@ -46,7 +47,7 @@
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "shutdown_timeout": "15m",
       "floppy_files": [
-        "{{template_dir}}/answer_files/10/Autounattend.xml"
+        "{{ user `floppy_dir` }}/{{ user `unattended_file_path` }}"
       ]
     }
   ],
@@ -58,9 +59,10 @@
         "packer::disable_uac",
         "packer::disable_onedrive",
         "packer::disable_restore",
-        "packer::disable_hibernation",
         "packer::disable_windows_update",
-        "packer::remove_defender"
+        "packer::remove_defender",
+        "packer::configure_power",
+        "packer::disable_screensaver"
       ]
     },
     {
@@ -75,8 +77,7 @@
         "packer::features",
         "packer::enable_file_sharing",
         "packer::enable_remote_desktop",
-        "packer::ui_tweaks",
-        "packer::power"
+        "packer::ui_tweaks"
       ]
     },
     {
@@ -112,9 +113,11 @@
     "guest_additions_mode": "attach",
     "guest_additions_url": "",
     "headless": "true",
-    "iso_checksum": "743fc483bb8bf1901c0534a0ae15208a5a72a3c5",
-    "iso_url": "https://software-download.microsoft.com/download/pr/18362.30.190401-1528.19h1_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso",
+    "iso_checksum": "489ebee676e26cdb81377b0e6385c001a22589b8",
+    "iso_url": "https://software-download.microsoft.com/download/pr/18363.418.191007-0143.19h2_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso",
     "build_directory": "../../builds",
+    "floppy_dir": "{{template_dir}}/answer_files",
+    "unattended_file_path": "10/Autounattend.xml",
     "template": "windows-10"
   }
 }
