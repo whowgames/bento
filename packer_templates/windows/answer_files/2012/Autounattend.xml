@@ -10,43 +10,43 @@
             -->
             <DriverPaths>
                 <PathAndCredentials wcm:action="add" wcm:keyValue="2">
-                    <Path>E:\viostor\2k12R2\amd64</Path>
+                    <Path>E:\viostor\2k12\amd64</Path>
                 </PathAndCredentials>
 
                 <PathAndCredentials wcm:action="add" wcm:keyValue="3">
-                    <Path>E:\NetKVM\2k12R2\amd64</Path>
+                    <Path>E:\NetKVM\2k12\amd64</Path>
                 </PathAndCredentials>
 
                 <PathAndCredentials wcm:action="add" wcm:keyValue="4">
-                    <Path>E:\Balloon\2k12R2\amd64</Path>
+                    <Path>E:\Balloon\2k12\amd64</Path>
                 </PathAndCredentials>
 
                 <PathAndCredentials wcm:action="add" wcm:keyValue="5">
-                    <Path>E:\pvpanic\2k12R2\amd64</Path>
+                    <Path>E:\pvpanic\2k12\amd64</Path>
                 </PathAndCredentials>
 
                 <PathAndCredentials wcm:action="add" wcm:keyValue="6">
-                    <Path>E:\qemupciserial\2k12R2\amd64</Path>
+                    <Path>E:\qemupciserial\2k12\amd64</Path>
                 </PathAndCredentials>
 
                 <PathAndCredentials wcm:action="add" wcm:keyValue="7">
-                    <Path>E:\qxldod\2k12R2\amd64</Path>
+                    <Path>E:\qxldod\2k12\amd64</Path>
                 </PathAndCredentials>
 
                 <PathAndCredentials wcm:action="add" wcm:keyValue="8">
-                    <Path>E:\vioinput\2k12R2\amd64</Path>
+                    <Path>E:\vioinput\2k12\amd64</Path>
                 </PathAndCredentials>
 
                 <PathAndCredentials wcm:action="add" wcm:keyValue="9">
-                    <Path>E:\viorng\2k12R2\amd64</Path>
+                    <Path>E:\viorng\2k12\amd64</Path>
                 </PathAndCredentials>
 
                 <PathAndCredentials wcm:action="add" wcm:keyValue="10">
-                    <Path>E:\vioscsi\2k12R2\amd64</Path>
+                    <Path>E:\vioscsi\2k12\amd64</Path>
                 </PathAndCredentials>
 
                 <PathAndCredentials wcm:action="add" wcm:keyValue="11">
-                    <Path>E:\vioserial\2k12R2\amd64</Path>
+                    <Path>E:\vioserial\2k12\amd64</Path>
                 </PathAndCredentials>
             </DriverPaths>
         </component>
@@ -85,7 +85,7 @@
                         </ModifyPartition>
                         <ModifyPartition wcm:action="add">
                             <Format>NTFS</Format>
-                            <Label>Windows 2012 R2</Label>
+                            <Label>Windows 2012</Label>
                             <Letter>C</Letter>
                             <Order>2</Order>
                             <PartitionID>2</PartitionID>
@@ -100,7 +100,7 @@
                     <InstallFrom>
                         <MetaData wcm:action="add">
                             <Key>/IMAGE/NAME</Key>
-                            <Value>Windows Server 2012 R2 SERVERSTANDARD</Value>
+                            <Value>Windows Server 2012 SERVERSTANDARD</Value>
                         </MetaData>
                     </InstallFrom>
                     <InstallTo>

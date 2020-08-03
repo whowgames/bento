@@ -5,8 +5,7 @@
       "cpus": "{{ user `cpus` }}",
       "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
-        "{{ user `floppy_dir` }}/{{ user `unattended_file_path` }}",
-        "{{template_dir}}/scripts/base_setup.ps1"
+        "{{ user `floppy_dir` }}/{{ user `unattended_file_path` }}"
       ],
       "headless": "{{ user `headless` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
@@ -26,13 +25,12 @@
       "cpus": "{{ user `cpus` }}",
       "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
-        "{{ user `floppy_dir` }}/{{ user `unattended_file_path` }}",
-        "{{template_dir}}/scripts/base_setup.ps1"
+        "{{ user `floppy_dir` }}/{{ user `unattended_file_path` }}"
       ],
       "guest_additions_mode": "{{ user `guest_additions_mode` }}",
       "guest_additions_path": "C:/users/vagrant/VBoxGuestAdditions.iso",
       "guest_additions_url": "{{ user `guest_additions_url` }}",
-      "guest_os_type": "Windows10_64",
+      "guest_os_type": "Windows2012_64",
       "hard_drive_interface": "sata",
       "headless": "{{ user `headless` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
@@ -66,16 +64,14 @@
       "cpus": "{{ user `cpus` }}",
       "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
-        "{{ user `floppy_dir` }}/{{ user `unattended_file_path` }}",
-        "{{template_dir}}/scripts/base_setup.ps1"
+        "{{ user `floppy_dir` }}/{{ user `unattended_file_path` }}"
       ],
-      "guest_os_type": "win-10",
+      "guest_os_type": "win-2012",
       "iso_checksum": "{{ user `iso_checksum` }}",
       "iso_url": "{{ user `iso_url` }}",
       "memory": "{{ user `memory` }}",
       "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-parallels",
       "parallels_tools_flavor": "win",
-      "parallels_tools_mode": "attach",
       "prlctl": [
         [
           "set",
@@ -98,8 +94,7 @@
       "disk_adapter_type": "lsisas1068",
       "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
-        "{{ user `floppy_dir` }}/{{ user `unattended_file_path` }}",
-        "{{template_dir}}/scripts/base_setup.ps1"
+        "{{ user `floppy_dir` }}/{{ user `unattended_file_path` }}"
       ],
       "guest_os_type": "windows9srv-64",
       "headless": "{{ user `headless` }}",
@@ -122,8 +117,7 @@
       "cpus": "{{ user `cpus` }}",
       "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
-        "{{ user `floppy_dir` }}/{{ user `unattended_file_path` }}",
-        "{{template_dir}}/scripts/base_setup.ps1"
+        "{{ user `floppy_dir` }}/{{ user `unattended_file_path` }}"
       ],
       "headless": "{{ user `headless` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
@@ -174,7 +168,6 @@
       "guest_os_type": "windows",
       "run_list": [
         "packer::disable_uac",
-        "packer::disable_onedrive",
         "packer::disable_restore",
         "packer::disable_windows_update",
         "packer::remove_defender",
@@ -230,11 +223,11 @@
     "guest_additions_url": "",
     "headless": "true",
     "hyperv_switch": "{{env `hyperv_switch`}}",
-    "iso_checksum": "489ebee676e26cdb81377b0e6385c001a22589b8",
-    "iso_url": "https://software-download.microsoft.com/download/pr/18363.418.191007-0143.19h2_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso",
+    "iso_checksum": "922b365c3360ce630f6a4b4f2f3c79e66165c0fb",
+    "iso_url": "http://download.microsoft.com/download/6/D/A/6DAB58BA-F939-451D-9101-7DE07DC09C03/9200.16384.WIN8_RTM.120725-1247_X64FRE_SERVER_EVAL_EN-US-HRM_SSS_X64FREE_EN-US_DV5.ISO",
     "memory": "4096",
-    "template": "windows-10",
-    "unattended_file_path": "10/Autounattend.xml",
+    "template": "windows-2012-standard",
+    "unattended_file_path": "2012/Autounattend.xml",
     "virtio_win_iso": "~/virtio-win.iso"
   }
 }
