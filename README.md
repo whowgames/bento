@@ -40,35 +40,35 @@ end
 To build an Ubuntu 18.04 box for only the VirtualBox provider
 
 ```
-$ cd ubuntu
+$ cd packer_templates/ubuntu
 $ packer build -only=virtualbox-iso ubuntu-18.04-amd64.json
 ```
 
-To build Debian 10.4 32bit boxes for all possible providers (simultaneously)
+To build Debian 10.6 32bit boxes for all possible providers (simultaneously)
 
 ```
-$ cd debian
-$ packer build debian-10.4-i386.json
+$ cd packer_templates/debian
+$ packer build debian-10.6-i386.json
 ```
 
 To build CentOS 7.7 boxes for all providers except VMware and Parallels
 
 ```
-$ cd centos
+$ cd packer_templates/centos
 $ packer build -except=parallels-iso,vmware-iso centos-7.7-x86_64.json
 ```
 
 To use an alternate mirror
 
 ```
-$ cd fedora
+$ cd packer_templates/fedora
 $ packer build -var 'mirror=http://mirror.utexas.edu/fedora/linux' fedora-31-x86_64.json
 ```
 
 To build a Windows 10 Enterprise Gen 2 box for the Hyper-V provider
 
 ```
-$ cd windows
+$ cd packer_templates/windows
 $ packer build windows-10gen2.json
 ```
 
@@ -88,7 +88,7 @@ packer build --only=qemu --var virtio_win_iso=~/virtio-win.iso windows-2019.json
 
 ### Proprietary Templates
 
-Templates for operating systems only available via license or subscription are also available in the repository, these include but are not limited to: macOS, Red Hat Enterprise Linux, and SUSE Linux Enterprise. As the ISOs are not publicly available the URL values will need to be overridden as appropriate. We rely on the efforts of those with access to licensed versions of the operating systems to keep these up-to-date.
+Templates for operating systems only available via license or subscription are also available in the repository, these include but are not limited to: Red Hat Enterprise Linux, and SUSE Linux Enterprise. As the ISOs are not publicly available the URL values will need to be overridden as appropriate. We rely on the efforts of those with access to licensed versions of the operating systems to keep these up-to-date.
 
 ### Networking/Firewalls
 
@@ -109,18 +109,16 @@ Hyper-V Gen 2 VMs do not support floppy drives. If you previously provided resou
 - `autounattend.xml`: The Gen 2 `autounattend.xml` file supports EFI partitions. Update the `autounattend.xml` with the correct Windows version for your systems and ensure that the partitions are correct for your situation. You also need to manage the driver disk that holds the hyper-v guest services drivers and adjust the `autounattend.xml` file as appropriate.
 - `base_setup.ps1`
 
-
-#### macOS / OSX
-
-See this [wiki page](https://github.com/chef/bento/wiki/macOS)
-
 ## Bugs and Issues
 
 Please use GitHub issues to report bugs, features, or other problems.
 
 ## Related projects
 
+A huge thank you to these related projects from which we've taken inspiration and often used as a source for workarounds in complex world of base box building.
+
 * https://github.com/boxcutter
+* https://github.com/lavabit/robox
 * https://github.com/mcandre/packer-templates
 * https://github.com/timsutton/osx-vm-templates
 * https://github.com/ferventcoder/vagrant-windows-puppet/tree/master/baseboxes
@@ -128,8 +126,6 @@ Please use GitHub issues to report bugs, features, or other problems.
 ## License & Authors
 
 These basebox templates were converted from [veewee](https://github.com/jedi4ever/veewee) definitions originally based on [work done by Tim Dysinger](https://github.com/dysinger/basebox) to make "Don't Repeat Yourself" (DRY) modular baseboxes. Thanks Tim!
-
-macOS templates were adopted wholesale from [Fletcher Nichol's packer templates](https://github.com/fnichol/packer-templates).
 
 - Author: Chris McClimans ([chris@hippiehacker.org](mailto:chris@hippiehacker.org))
 - Author: Fletcher Nichol ([fnichol@nichol.ca](mailto:fnichol@nichol.ca))
@@ -143,7 +139,7 @@ macOS templates were adopted wholesale from [Fletcher Nichol's packer templates]
 - Author: Tom Duffield ([tom@chef.io](mailto:tom@chef.io))
 
 ```text
-Copyright 2012-2019, Chef Software, Inc. (<legal@chef.io>)
+Copyright 2012-2020, Chef Software, Inc. (<legal@chef.io>)
 Copyright 2011-2012, Tim Dysinger (<tim@dysinger.net>)
 
 Licensed under the Apache License, Version 2.0 (the "License");

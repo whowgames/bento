@@ -3,7 +3,7 @@
     {
       "accelerator": "kvm",
       "boot_command": [
-        "<tab> linux ks=http://{{.HTTPIP}}:{{.HTTPPort}}/{{user `ks_path`}}<enter><wait>"
+        "<up><wait><tab> linux ks=http://{{.HTTPIP}}:{{.HTTPPort}}/{{user `ks_path`}}<enter><wait>"
       ],
       "boot_wait": "10s",
       "cpus": "{{ user `cpus` }}",
@@ -31,7 +31,7 @@
     },
     {
       "boot_command": [
-        "<tab> linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
+        "<up><wait><tab> linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
       ],
       "boot_wait": "10s",
       "cpus": "{{ user `cpus` }}",
@@ -57,7 +57,7 @@
     },
     {
       "boot_command": [
-        "<tab> linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
+        "<up><wait><tab> linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
       ],
       "boot_wait": "10s",
       "cpus": "{{ user `cpus` }}",
@@ -85,7 +85,7 @@
     },
     {
       "boot_command": [
-        "<tab> linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
+        "<up><wait><tab> linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
       ],
       "boot_wait": "10s",
       "cpus": "{{ user `cpus` }}",
@@ -108,7 +108,7 @@
     },
     {
       "boot_command": [
-        "<tab> linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
+        "<up><wait><tab> linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>"
       ],
       "boot_wait": "10s",
       "cpus": "{{ user `cpus` }}",
@@ -125,6 +125,7 @@
       "ssh_timeout": "10000s",
       "ssh_username": "vagrant",
       "type": "qemu",
+      "qemuargs": [["{{ user `qemuargs_opt` }}","{{ user `qemuargs_value` }}"]],
       "vm_name": "{{ user `template` }}"
     }
   ],
@@ -145,16 +146,16 @@
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "expect_disconnect": true,
       "scripts": [
-        "{{template_dir}}/scripts/swap.sh",
         "{{template_dir}}/scripts/fix-slow-dns.sh",
         "{{template_dir}}/scripts/build-tools.sh",
         "{{template_dir}}/scripts/install-supporting-packages.sh",
         "{{template_dir}}/../_common/motd.sh",
         "{{template_dir}}/../_common/sshd.sh",
         "{{template_dir}}/../_common/virtualbox.sh",
-        "{{template_dir}}/../_common/vmware.sh",
+        "{{template_dir}}/scripts/vmware.sh",
         "{{template_dir}}/../_common/parallels.sh",
         "{{template_dir}}/../_common/vagrant.sh",
+        "{{template_dir}}/scripts/real-tmp.sh",
         "{{template_dir}}/scripts/cleanup.sh",
         "{{template_dir}}/../_common/minimize.sh"
       ],
@@ -183,7 +184,8 @@
     "name": "fedora-31",
     "no_proxy": "{{env `no_proxy`}}",
     "template": "fedora-31-x86_64",
+    "qemuargs_opt": "-m",
+    "qemuargs_value": "1024M",
     "version": "TIMESTAMP"
   }
 }
-
