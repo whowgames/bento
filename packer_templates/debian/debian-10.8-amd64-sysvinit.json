@@ -149,6 +149,7 @@
       "boot_wait": "5s",
       "cpus": "{{ user `cpus` }}",
       "disk_size": "{{user `disk_size`}}",
+      "display": "cocoa",
       "headless": "{{ user `headless` }}",
       "http_directory": "{{user `http_directory`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
